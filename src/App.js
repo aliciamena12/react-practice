@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+// import logo from './assets/img/logo.svg';
+import './assets/App.css';
+import Auth from './Auth';
+import { useUser } from 'reactfire';
+
+import {useFirebaseApp} from 'reactfire';
+
+//Importar componentes
+// import MiComponente from './components/MiComponente';
+
+
 
 function App() {
+  const firebase = useFirebaseApp();
+  const user = useUser();
+  console.log(firebase);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { user && <p>Usuario: {user.email}</p>}
+      <Auth />
+
     </div>
   );
 }
